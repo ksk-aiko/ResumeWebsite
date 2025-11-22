@@ -1,0 +1,22 @@
+@startuml activity
+title "ポートフォリオ閲覧フロー（JSON 読み込み）"
+
+start
+
+:ユーザーが\n/portfolio.html にアクセス;
+:ブラウザが HTML/CSS/JS を読み込む;
+
+:JavaScript 初期化\n(main.js);
+:fetch('/assets/portfolio.json') を実行;
+
+if (HTTP 200?) then (はい)
+  :JSON をパース;
+  :ポートフォリオ配列を\n公開日降順にソート;
+  :各エントリをカード要素として\nDOM に追加;
+  :画面に一覧を表示;
+else (いいえ)
+  :エラーメッセージを DOM に表示;
+endif
+
+stop
+@enduml

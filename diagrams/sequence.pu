@@ -1,0 +1,28 @@
+@startuml sequence
+title "ポートフォリオ一覧表示のシーケンス"
+
+actor Visitor
+participant "Browser\n(HTML/CSS/JS)" as Browser
+participant "Nginx" as Nginx
+database "portfolio.json\n(static file)" as JsonFile
+
+Visitor -> Browser : /portfolio.html にアクセス
+Browser -> Nginx : GET /portfolio.html
+Nginx --> Browser : 200 OK + HTML
+
+Browser -> Nginx : GET /assets/style.css
+Nginx --> Browser : 200 OK + CSS
+
+Browser -> Nginx : GET /assets/main.js
+Nginx --> Browser : 200 OK + JS
+
+Browser -> Browser : DOMContentLoaded\nmain.js 初期化
+
+Browser -> Nginx : GET /assets/portfolio.json (AJAX)
+Nginx -> JsonFile : スタティックファイル読み込み
+JsonFile --> Nginx : portfolio.json
+Nginx --> Browser : 200 OK + JSON
+
+Browser -> Browser : JSON パース\n→ DOM 要素生成\n→ 画面表示
+
+@enduml

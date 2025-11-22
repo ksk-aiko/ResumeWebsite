@@ -1,0 +1,45 @@
+@startuml component
+title "Resume Website コンポーネント図"
+
+package "Presentation (Browser)" {
+  [index.html]
+  [resume.html]
+  [portfolio.html]
+  component "main.js" as MainJS
+  component "style.css" as StyleCSS
+}
+
+package "Static Content" {
+  component "portfolio.json" as PortfolioJson
+  component "resume.pdf" as ResumePDF
+  component "images/*" as Images
+}
+
+node "Nginx コンテナ" {
+  [Nginx]
+}
+
+node "AWS EC2" {
+  [Docker Engine]
+}
+
+[index.html] -- MainJS
+[resume.html] -- MainJS
+[portfolio.html] -- MainJS
+[index.html] -- StyleCSS
+[resume.html] -- StyleCSS
+[portfolio.html] -- StyleCSS
+
+MainJS --> PortfolioJson
+[resume.html] --> ResumePDF
+
+Nginx --> index.html
+Nginx --> resume.html
+Nginx --> portfolio.html
+Nginx --> PortfolioJson
+Nginx --> ResumePDF
+Nginx --> Images
+
+[Docker Engine] --> Nginx
+
+@enduml

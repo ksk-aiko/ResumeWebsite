@@ -1,0 +1,29 @@
+@startuml usecase
+left to right direction
+skinparam packageStyle rectangle
+title "Resume Website ユースケース図"
+
+actor "Visitor" as Visitor
+actor "Site Owner\n(Developer)" as Owner
+
+rectangle "Resume Website" {
+  usecase "ホームページを閲覧する" as UC_Home
+  usecase "レジュメを閲覧する" as UC_ViewResume
+  usecase "レジュメ PDF をダウンロードする" as UC_DownloadResume
+  usecase "ポートフォリオ一覧を閲覧する" as UC_ViewPortfolio
+  usecase "ポートフォリオ詳細を読む" as UC_ViewPortfolioDetail
+
+  usecase "ポートフォリオ JSON を編集する" as UC_EditPortfolioJson
+  usecase "サイトをデプロイする" as UC_DeploySite
+}
+
+Visitor --> UC_Home
+Visitor --> UC_ViewResume
+Visitor --> UC_DownloadResume
+Visitor --> UC_ViewPortfolio
+Visitor --> UC_ViewPortfolioDetail
+
+Owner --> UC_EditPortfolioJson
+Owner --> UC_DeploySite
+
+@enduml

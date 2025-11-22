@@ -1,0 +1,34 @@
+@startuml class
+title "フロントエンドクラス図（概念）"
+
+class PortfolioItem {
+  +id: number
+  +title: string
+  +summary: string
+  +content: string
+  +source: string
+  +thumbnail: string
+  +date: Date
+}
+
+class PortfolioRepository {
+  +endpoint: string
+  +fetchAll(): Promise<List<PortfolioItem>>
+}
+
+class PortfolioRenderer {
+  +containerSelector: string
+  +renderList(items: List<PortfolioItem>): void
+  +renderError(message: string): void
+}
+
+class NavHighlighter {
+  +highlight(currentPath: string): void
+}
+
+PortfolioRepository "1" --> "*" PortfolioItem
+PortfolioRenderer ..> PortfolioItem
+PortfolioRenderer ..> PortfolioRepository
+NavHighlighter ..> "HTMLDocument"
+
+@enduml

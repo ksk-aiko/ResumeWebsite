@@ -1,0 +1,30 @@
+@startuml arch
+title "Resume Website アーキテクチャ概要"
+
+actor "Visitor\n(ブラウザ)" as User
+
+node "AWS EC2\n(nginx-server)" as EC2 {
+  node "Docker Engine" as Docker {
+    node "nginx コンテナ" as Nginx {
+      folder "/usr/share/nginx/html" as WebRoot {
+        [index.html]
+        [resume.html]
+        [portfolio.html]
+        folder "assets" {
+          [style.css]
+          [main.js]
+          [portfolio.json]
+          [resume.pdf]
+          [images...]
+        }
+      }
+    }
+  }
+}
+
+User -down-> EC2 : HTTPS (443)\nHTTP (80, 初期セットアップ)
+
+EC2 -down-> Nginx : docker network\nport 80
+Nginx --> WebRoot : 静的ファイル配信
+
+@enduml

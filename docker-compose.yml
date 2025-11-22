@@ -1,0 +1,19 @@
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resume-website
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+      - ./logs/nginx:/var/log/nginx
+    environment:
+      - TZ=Asia/Tokyo
+
+networks:
+  default:
+    name: resume-network
