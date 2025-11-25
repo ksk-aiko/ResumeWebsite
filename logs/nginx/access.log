@@ -17,3 +17,6 @@
 192.168.65.1 - - [25/Nov/2025:18:18:33 +0900] "GET /resume.html HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" "-"
 192.168.65.1 - - [25/Nov/2025:18:18:36 +0900] "GET /portfolio.html HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" "-"
 192.168.65.1 - - [25/Nov/2025:18:18:36 +0900] "GET /assets/portfolio.json HTTP/1.1" 304 0 "http://localhost/portfolio.html" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" "-"
+
+test
+
