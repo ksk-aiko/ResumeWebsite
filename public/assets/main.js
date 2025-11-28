@@ -1,4 +1,20 @@
 (function () {
+  async function injectPartials() {
+    const slots = document.querySelectorAll("[data-partial]");
+    await Promise.all(
+      Array.from(slots).map(async (slot) => {
+        const name = slot.getAttribute("data-partial");
+        try {
+          const res = await fetch(`/partials/${name}.html`,{cache: "no-cache"});
+          if (!res.ok) throw new Error(`Failed to load ${name}`);
+          slot.outerHTML = await res.text();
+        } catch (err) {
+          console.error(err);
+        }
+      })
+    )
+  }
+  
   function highlightNav() {
     var path = window.location.pathname;
     var links = document.querySelectorAll(".nav-link");
@@ -83,8 +99,10 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", async function () {
+    await injectPartials();
     highlightNav();
     loadPortfolio();
   });
+
 })();
