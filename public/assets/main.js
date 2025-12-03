@@ -1,11 +1,11 @@
 (function () {
+  // function to load and inject partial HTML files
   async function injectPartials() {
     const slots = document.querySelectorAll("[data-partial]");
     await Promise.all(
       Array.from(slots).map(async (slot) => {
         const name = slot.getAttribute("data-partial");
-        try {
-          const res = await fetch(`/partials/${name}.html`,{cache: "no-cache"});
+        try { const res = await fetch(`/partials/${name}.html`,{cache: "no-cache"});
           if (!res.ok) throw new Error(`Failed to load ${name}`);
           slot.outerHTML = await res.text();
         } catch (err) {
@@ -15,21 +15,24 @@
     )
   }
   
+  // function to highlight the active navigation link
   function highlightNav() {
-    var path = window.location.pathname;
+    // Get the current path without trailing slash
+    var path = window.location.pathname.replace(/\/+$/, "") || "/"; 
+    // Find all nav links and highlight the active one
     var links = document.querySelectorAll(".nav-link");
     links.forEach(function (link) {
       var nav = link.getAttribute("data-nav");
-      if (nav === "home" && (path === "/" || path === "/index.html")) {
-        link.classList.add("active");
-      } else if (nav === "resume" && path.indexOf("resume") !== -1) {
-        link.classList.add("active");
-      } else if (nav === "portfolio" && path.indexOf("portfolio") !== -1) {
-        link.classList.add("active");
-      }
+      // Determine if this link should be active
+      var isActive = 
+        (nav === "home" && (path === "/" || path === "/index.html")) ||
+        (nav === "resume" && path.includes("/resume")) ||
+        (nav === "portfolio" && path.includes("/portfolio"));
+      link.classList.toggle("active", isActive);
     });
   }
 
+  // function to load and render portfolio items
   async function loadPortfolio() {
     var listEl = document.getElementById("portfolio-list");
     if (!listEl) return; // ポートフォリオページ以外では何もしない
@@ -51,6 +54,7 @@
     }
   }
 
+  // function to render portfolio items into the DOM
   function renderPortfolioList(items) {
     var listEl = document.getElementById("portfolio-list");
     listEl.innerHTML = "";
