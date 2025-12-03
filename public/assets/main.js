@@ -38,10 +38,18 @@
     if (!listEl) return; // ポートフォリオページ以外では何もしない
 
     var errorEl = document.getElementById("portfolio-error");
+    // Clear previous error message
+    if (errorEl) errorEl.textContent = "";
     try {
       var res = await fetch("/assets/portfolio.json", { cache: "no-cache" });
-      if (!res.ok) throw new Error("Failed to load portfolio.json");
+      // Throw an error with status code if fetch fails
+      if (!res.ok) throw new Error("Failed to load portfolio.json" + res.status);
       var items = await res.json();
+      // Validate that items is an array
+      if (!Array.isArray(items)) {
+        throw new Error("portfolio.json must be an array");
+      } 
+      // Sort items by date descending
       items.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
       });
