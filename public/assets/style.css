@@ -178,4 +178,14 @@ section h2 {
   nav {
     margin-top: 0.5rem;
   }
+  main {
+    padding: 1rem;
+  }
+  section {
+    padding: 1.25rem;
+  }
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
