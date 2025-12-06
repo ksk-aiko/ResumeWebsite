@@ -66,6 +66,20 @@
   function renderPortfolioList(items) {
     var listEl = document.getElementById("portfolio-list");
     listEl.innerHTML = "";
+
+    // Show message if no items are available
+    if ( !items.length) {
+      listEl.innerHTML = '<p class="empty">公開中のポートフォリオはまだありません。</p>';
+      return;
+    }
+    
+    // Date formatter for Japanese locale
+    var dateFormatter = new Intl.DateTimeFormat("ja-JP", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
     items.forEach(function (item) {
       var article = document.createElement("article");
       article.className = "portfolio-card";
@@ -87,13 +101,12 @@
       var meta = document.createElement("p");
       meta.className = "meta";
       if (item.date) {
-        var d = new Date(item.date);
-        meta.textContent = d.toLocaleDateString("ja-JP");
+        meta.textContent = dateFormatter.format(new Date(item.date));
       }
       content.appendChild(meta);
 
       var summary = document.createElement("p");
-      summary.textContent = item.summary || "";
+      summary.textContent = item.summary || "詳細は追加予定です。";
       content.appendChild(summary);
 
       if (item.source) {
