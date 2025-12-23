@@ -7,15 +7,18 @@ services:
     container_name: resume-website
     ports:
       - "80:80"
+      - "443:443"
     restart: unless-stopped
     volumes:
       - ./public:/usr/share/nginx/html:ro
       - ./logs/nginx:/var/log/nginx
+      - /etc/letencrypt:/etc/letsencrypt:ro
+      - ./nginx.conf:/etc/nginx/conf.d/defautl.conf:ro
     environment:
       - TZ=Asia/Tokyo
     # Optional healthcheck to monitor container health
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- https://localhost || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
