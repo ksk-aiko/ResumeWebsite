@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "title": "\"FoodieFinder\" レストラン探索アプリ",
-    "summary": "個々のユーザーの食事の嗜好に基づいて、最適なレストランを提案するモバイルアプリケーションです。",
-    "content": "FoodieFinderは、個々のユーザーの食事の嗜好に基づいて、最適なレストランを提案するモバイルアプリケーションです。",
-    "source": "https://github.com/",
-    "thumbnail": "https://cdn.pixabay.com/photo/2018/04/11/03/13/food-3309418_1280.jpg",
-    "date": "2023-07-16T00:00:00"
+    "title": "Motivational Speech Wallpaper",
+    "summary": "モチベーションを高める名言を美しい背景画像と共に表示するWebアプリケーション。オブジェクト指向設計とBootstrapを活用し、カスタマイズ可能な壁紙風カードを生成します。",
+    "content": "エンジニアや科学者の名言を配置した壁紙風のカードを生成し、ユーザーに日々のインスピレーションを提供。JavaScriptのクラスベース設計による拡張性の高い構造で、テキストの位置・色・背景画像を自由に設定可能です。",
+    "source": "https://github.com/ksk-aiko/MotivationalSpeechWallpaper",
+    "thumbnail": "https://cdn.pixabay.com/photo/2016/11/29/12/13/chair-1869579_1280.jpg",
+    "date": "2024-01-15T00:00:00"
   },
   {
     "id": 2,
